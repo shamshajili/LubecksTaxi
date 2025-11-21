@@ -1,0 +1,42 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- secrets / firebase ---
+backend/serviceAccountKey.json
+backend/serviceAccountKey*.json
+backend/*serviceAccount*.json
+
+# --- env files (backend too) ---
+backend/.env
+backend/.env.*
+
+# optional: firebase / local stuff
+.firebase/
+firestore-debug.log
+ui-debug.log
+
+backend/serviceAccountKey.json
+backend/*.json
+.env
+lubecks-taxi-firebase-adminsdk-fbsvc-4534f31f3a.json"
