@@ -87,7 +87,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   const token = await executeRecaptcha("submit_review");
 
   try {
-    const res = await fetch("https://us-central1-lubecks-taxi.cloudfunctions.net/api/review", {
+    const res = await fetch("https://api-rw1jeucb4a-uc.a.run.app/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
