@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-let fetch = require("node-fetch");
 
 require("dotenv").config();
 
@@ -17,12 +16,15 @@ const db = admin.firestore();
 const app = express();
 
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://lubecks-taxi-dybx.vercel.app"
-  ],
-  methods: ["GET", "POST", "DELETE"],
-  allowedHeaders: ["Content-Type", "x-admin-token"]
+  origin: function(origin, callback) {
+    // origin boş ola bilər (postman, mobile app və s.)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error("Not allowed by CORS: " + origin));
+  },
+  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "x-admin-token"],
+  credentials: true
 }));
 app.use(express.json());
 
