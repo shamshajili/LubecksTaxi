@@ -12,7 +12,7 @@ export default function AdminLogin({ onLogin }: { onLogin: (t: string) => void }
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:5001/admin/login", {
+      const res = await fetch("https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

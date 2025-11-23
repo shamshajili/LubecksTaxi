@@ -20,7 +20,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
   // LOAD REVIEWS
   // ==========================
   useEffect(() => {
-    fetch("http://localhost:5001/admin/reviews", {
+    fetch("https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/reviews", {
       headers: { "x-admin-token": token },
     })
       .then((res) => res.json())
@@ -33,7 +33,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
   // LOAD BANNED USERS
     const loadBanned = async () => {
       try {
-        const res = await fetch("http://localhost:5001/admin/banned", {
+        const res = await fetch("https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/banned", {
           headers: { "x-admin-token": token }
         });
     
@@ -50,7 +50,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
   // DELETE REVIEW
   const deleteReview = async (id: string) => {
-    await fetch(`http://localhost:5001/admin/review/${id}`, {
+    await fetch(`https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/review/${id}`, {
       method: "DELETE",
       headers: { "x-admin-token": token },
     });
@@ -60,7 +60,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
   // BAN USER
   const banUser = async () => {
-    await fetch("http://localhost:5001/admin/ban", {
+    await fetch("https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/ban", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
   // UNBAN USER
   const unban = async (id: string) => {
-    await fetch(`http://localhost:5001/admin/unban/${id}`, {
+    await fetch(`https://us-central1-lubecks-taxi.cloudfunctions.net/api/admin/unban/${id}`, {
       method: "DELETE",
       headers: { "x-admin-token": token },
     });
