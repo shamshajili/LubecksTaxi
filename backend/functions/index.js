@@ -19,13 +19,11 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://lubecks-taxi-dybx.vercel.app",
-    "https://lubecks-taxi.vercel.app",
+    "https://lubecks-taxi-dybx.vercel.app"
   ],
   methods: ["GET", "POST", "DELETE"],
   allowedHeaders: ["Content-Type", "x-admin-token"]
 }));
-
 app.use(express.json());
 
 // ===== BAD WORD LIST =====

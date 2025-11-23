@@ -12,7 +12,7 @@ export default function AdminLogin({ onLogin }: { onLogin: (t: string) => void }
     setError(null);
 
     try {
-      const res = await fetch("https://api-rw1jeucb4a-uc.a.run.app/admin/login", {
+      const res = await fetch("https://api-rwljeucb4a-uc.a.run.app/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
