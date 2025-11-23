@@ -17,7 +17,7 @@ const services = [
     title: "Krankentransport",
     desc: "Sichere Fahrten zu Arztterminen oder ins Krankenhaus – wir bringen Sie pünktlich hin und wieder zurück.",
     link: "/krankenfahrten",
-    icon: "❤️",
+    icon: "🚑",
   },
   {
     title: "Kurierfahrten",

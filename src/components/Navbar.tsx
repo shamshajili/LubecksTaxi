@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import mainlogo from "../assets/images/lubeckslogo.png";
+import mainlogo from "../assets/images/logo1.png";
 import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
       <nav
         className="
           fixed top-0 left-0 w-full z-50 
-          bg-white text-slate-900 
+          bg-black text-yellow-400 
           px-6 md:px-10 py-4 
           shadow-md border-b border-yellow-400
         "
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
             <li>
               <Link
                 to="/personenfahrten"
-                className="text-slate-800 hover:text-yellow-500 transition"
+                className="text-white hover:text-yellow-500 transition"
                 onClick={handleLinkClick}
               >
                 Personenfahrten
@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
             <li>
               <Link
                 to="/kurierfahrten"
-                className="text-slate-800 hover:text-yellow-500 transition"
+                className="text-white hover:text-yellow-500 transition"
                 onClick={handleLinkClick}
               >
                 Kurierfahrten
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
             <li>
               <Link
                 to="/flughafenfahrten"
-                className="text-slate-800 hover:text-yellow-500 transition"
+                className="text-white hover:text-yellow-500 transition"
                 onClick={handleLinkClick}
               >
                 Flughafenfahrten
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
             <li>
               <Link
                 to="/krankenfahrten"
-                className="text-slate-800 hover:text-yellow-500 transition"
+                className="text-white hover:text-yellow-500 transition"
                 onClick={handleLinkClick}
               >
                 Krankenfahrten
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
             <li>
               <Link
                 to="/kinderfahrten"
-                className="text-slate-800 hover:text-yellow-500 transition"
+                className="text-white hover:text-yellow-500 transition"
                 onClick={handleLinkClick}
               >
                 Kinderfahrten
@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
 
           {/* MOBILE MENU BUTTON */}
           <button
-            className="md:hidden text-slate-900"
+            className="md:hidden text-white"
             onClick={() => setOpen(true)}
           >
             <Bars3Icon className="w-8 h-8 mr-6" />
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
       {/* MOBILE MENU */}
       <div
         className={`
-          fixed inset-0 bg-white text-slate-900 z-50 
+          fixed inset-0 bg-black text-white z-50 
           transform transition-all duration-300 
           ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
         `}
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
           </div>
 
           <button onClick={() => setOpen(false)}>
-            <XMarkIcon className="w-8 h-8 mr-4 text-slate-900" />
+            <XMarkIcon className="w-8 h-8 mr-4 text-white" />
           </button>
         </div>
 
@@ -167,7 +167,7 @@ const Navbar: React.FC = () => {
 
         {/* CONTACT BOX */}
         <div className="mt-12 px-8">
-          <div className="bg-slate-100 p-5 rounded-2xl shadow-md border border-yellow-400/60">
+          <div className="bg-yellow-100 p-5 rounded-2xl shadow-md border border-yellow-400/60">
             <div className="flex flex-col gap-3 text-slate-900">
 
               <a

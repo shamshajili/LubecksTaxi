@@ -42,8 +42,7 @@ const Personenfahrten: React.FC = () => {
           viewport={{ once: true }}
           className="text-lg md:text-xl text-gray-300 text-center mt-3 max-w-2xl mx-auto"
         >
-          Ihre beste Wahl für sichere & komfortable Fahrten in Lübeck, Bad
-          Schwartau & Umgebung.
+          Ihre beste Wahl für sichere & komfortable Fahrten in Lübeck & Umgebung.
         </motion.p>
 
         {/* CTA BUTTONS */}

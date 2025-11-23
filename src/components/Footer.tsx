@@ -4,12 +4,12 @@ import {
   EnvelopeIcon,
   DevicePhoneMobileIcon,
 } from "@heroicons/react/24/outline";
-import mainlogo from "../assets/images/lubeckslogo.png";
+import mainlogo from "../assets/images/logo1.png";
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white text-slate-900 border-t border-yellow-400">
+    <footer className="bg-black text-slate-900 border-t border-yellow-400">
       {/* MAIN GRID */}
       <div
         className="max-w-7xl mx-auto px-6 sm:px-10 py-14 
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               className="w-28 h-28 object-contain mb-4"
             />
           </Link>
-          <p className="text-slate-700 text-base sm:text-lg font-light font-semibold">
+          <p className="text-white text-base sm:text-lg font-light font-semibold">
             Sicher. Pünktlich. Komfortabel.
           </p>
         </div>
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           <h3 className="text-xl font-semibold mb-4 text-yellow-500">
             Service
           </h3>
-          <ul className="space-y-2 text-slate-800 text-base ">
+          <ul className="space-y-2 text-white text-base ">
             <li>
               <Link
                 to="/personenfahrten"
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
             Kontakt
           </h3>
 
-          <ul className="space-y-4 text-slate-800 text-base">
+          <ul className="space-y-4 text-white text-base">
             <li className="flex justify-center md:justify-start items-start gap-3">
               <MapPinIcon className="h-6 w-6 text-yellow-500" />
               <span className="font-semibold">Brahmsstraße 20j, 23556 Lübeck</span>
@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
           <h3 className="text-xl font-semibold mb-4 text-yellow-500 font-semibold">
             Rechtliches
           </h3>
-          <ul className="space-y-2 text-slate-800 text-base">
+          <ul className="space-y-2 text-white text-base">
             <li className="hover:text-yellow-500 cursor-pointer transition">
               <span className="font-semibold">Impressum</span>
             </li>
@@ -126,15 +126,15 @@ const Footer: React.FC = () => {
       </div>
 
       {/* COPYRIGHT */}
-      <div className="border-t border-yellow-400/60 bg-neutral-50 py-4">
+      <div className="border-t border-yellow-400/60 bg-black py-4">
         <a
           href="https://www.instagram.com/shamshajili"
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-center text-slate-600 text-xs sm:text-sm hover:text-yellow-600 transition"
+          className="block text-center text-white text-xs sm:text-sm hover:text-yellow-600 transition"
         >
           © {new Date().getFullYear()} Lübecks Taxi — Design & Entwicklung:{" "}
-          <span className="font-semibold text-slate-900">Shams Hajili</span>
+          <span className="font-semibold text-white">Shams Hajili</span>
         </a>
       </div>
     </footer>

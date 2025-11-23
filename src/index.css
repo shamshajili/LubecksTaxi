@@ -25,3 +25,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   height: 22px;
   cursor: pointer;
 }
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.25s ease-out;
+}
