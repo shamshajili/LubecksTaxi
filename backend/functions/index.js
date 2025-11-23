@@ -15,17 +15,28 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 const app = express();
 
-app.use(cors({
-  origin: function(origin, callback) {
-    // origin boş ola bilər (postman, mobile app və s.)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(new Error("Not allowed by CORS: " + origin));
-  },
-  methods: ["GET", "POST", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "x-admin-token"],
-  credentials: true
-}));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://lubecks-taxi-dybx.vercel.app"
+];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, x-admin-token");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
+  }
+
+  next();
+});
 app.use(express.json());
 
 // ===== BAD WORD LIST =====
