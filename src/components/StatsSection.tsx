@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import holstentor from "../assets/images/holstentor.jpg";
+import { Car, Headphones, CreditCard } from "lucide-react";
+import InfoPopup from "../components/InfoPopup";
 
 const StatsSection: React.FC = () => {
+  const [openStatsPopup, setOpenStatsPopup] = useState<string | null>(null);
+
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -28,47 +31,106 @@ const StatsSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Main Image */}
+        {/* ✅ BU WRAPPER ÇOX VACİBDİR: CARD + POPUPS hamısı bunun içindədir */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
           variants={fadeUp}
-          className="rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.25)] transition-shadow duration-300 border border-yellow-500/20"
+          className="relative w-full flex justify-center"
         >
-          <img
-            src={holstentor}
-            alt="Lübeck"
-            className="w-full object-cover max-h-[520px] md:hover:scale-[1.02] transition-transform duration-500"
-          />
-        </motion.div>
+          {/* CARD */}
+          <div className="bg-white text-black rounded-2xl shadow-xl p-6 w-[90%] sm:w-[70%] md:w-[50%] z-10">
+            <h2 className="text-lg font-semibold mb-2">Deine Fahrt, genau dann.</h2>
+            <p className="text-gray-700 mb-3 text-sm">
+              Lübecks Taxi – schnell, zuverlässig und professionell. Wir bringen dich sicher ans Ziel.
+            </p>
 
-        {/* Stats Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeUp}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-10 mt-16"
-        >
-          {[
-            { value: "60K+", label: "Fahrten monatlich" },
-            { value: "98%", label: "Kundenzufriedenheit" },
-            { value: "15+", label: "Städte im Einsatz" },
-            { value: "4K+", label: "Aktive Fahrer" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-neutral-900 rounded-2xl py-6 px-4 w-full text-center shadow-md hover:shadow-xl border border-yellow-500/25 transition-all duration-300"
-            >
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400 mb-2 tracking-tight">
-                {item.value}
-              </h3>
-              <p className="text-gray-300 text-sm sm:text-base md:text-lg font-medium break-words">
-                {item.label}
-              </p>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setOpenStatsPopup("buchen")}
+                className="bg-yellow-400 text-black px-3 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-yellow-300 transition"
+              >
+                <Car className="w-4 h-4" />
+                Buchen
+              </button>
+
+              <button
+                onClick={() => setOpenStatsPopup("service")}
+                className="bg-neutral-900 text-white px-3 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-neutral-800 transition border border-neutral-700"
+              >
+                <Headphones className="w-4 h-4 text-yellow-300" />
+                24/7 Service
+              </button>
+
+              <button
+                onClick={() => setOpenStatsPopup("payment")}
+                className="bg-white text-black px-3 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition border border-gray-300"
+              >
+                <CreditCard className="w-4 h-4 text-yellow-500" />
+                Bezahlung
+              </button>
             </div>
-          ))}
+          </div>
+
+          {/* ✅ POPUPS — MÜTLƏQ bu relative wrapper-in içində olmalıdır */}
+
+          <InfoPopup
+            open={openStatsPopup === "buchen"}
+            onClose={() => setOpenStatsPopup(null)}
+          >
+            <h3 className="text-xl font-bold mb-2">Buchung</h3>
+            <p className="text-gray-700 mb-3 text-sm">
+              Buche deine Fahrt in wenigen Minuten. Wir holen dich überall ab.
+            </p>
+
+            <div className="bg-gray-100 p-3 rounded-lg border border-gray-300 flex items-center gap-2">
+              📍
+              <input
+                type="text"
+                placeholder="Abholadresse eingeben"
+                className="bg-transparent w-full outline-none text-sm text-gray-700"
+              />
+            </div>
+          </InfoPopup>
+
+          <InfoPopup
+            open={openStatsPopup === "service"}
+            onClose={() => setOpenStatsPopup(null)}
+          >
+            <h3 className="text-xl font-bold mb-2">24/7 Service</h3>
+            <p className="text-gray-700 text-sm">
+              Unser Team ist rund um die Uhr erreichbar – Bestellungen jederzeit möglich.
+            </p>
+          </InfoPopup>
+
+          <InfoPopup
+            open={openStatsPopup === "payment"}
+            onClose={() => setOpenStatsPopup(null)}
+          >
+            <h3 className="text-xl font-bold mb-3">Bezahlung</h3>
+            <p className="text-gray-700 text-sm mb-3">
+              Wir akzeptieren sichere und moderne Zahlungsmethoden.
+            </p>
+
+            <div className="flex gap-5 items-center">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                className="w-14"
+                alt="PayPal"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
+                className="w-12"
+                alt="Visa"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                className="w-12"
+                alt="Mastercard"
+              />
+            </div>
+          </InfoPopup>
         </motion.div>
       </div>
     </section>
