@@ -14,6 +14,8 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 const app = express();
+const fetch = require("node-fetch");
+
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -98,14 +100,19 @@ function adminAuth(req, res, next) {
   if (!token) return res.status(401).json({ error: "Unauthorized" });
 
   try {
-    const decoded = jwt.verify(token, process.env.ADMIN_JWT_SECRET);
-    if (!decoded.admin) return res.status(401).json({ error: "Unauthorized" });
+    const adminJwtSecret = functions.config().admin.jwt_secret;
+    const decoded = jwt.verify(token, adminJwtSecret);
+
+    if (!decoded.admin) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
 
     next();
-  } catch {
+  } catch (err) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 }
+
 
 // ======================================================
 // =================== API ENDPOINTS =====================
@@ -116,20 +123,24 @@ app.post("/admin/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (email !== process.env.ADMIN_EMAIL) {
-      return res.status(401).json({ error: "Ungültige Zugangsdaten." });
-    }
+   const adminEmail = functions.config().admin.email;
+const adminHash = functions.config().admin.password_hash;
+const adminJwtSecret = functions.config().admin.jwt_secret;
 
-    const ok = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH);
-    if (!ok) {
-      return res.status(401).json({ error: "Ungültige Zugangsdaten." });
-    }
+if (email !== adminEmail) {
+  return res.status(401).json({ error: "Ungültige Zugangsdaten." });
+}
 
-    const token = jwt.sign(
-      { admin: true, email },
-      process.env.ADMIN_JWT_SECRET,
-      { expiresIn: "12h" }
-    );
+const ok = await bcrypt.compare(password, adminHash);
+if (!ok) {
+  return res.status(401).json({ error: "Ungültige Zugangsdaten." });
+}
+
+const token = jwt.sign(
+  { admin: true, email },
+  adminJwtSecret,
+  { expiresIn: "12h" }
+);
 
     return res.json({ token });
   } catch (e) {
@@ -151,7 +162,7 @@ app.post("/review", async (req, res) => {
       return res.status(400).json({ error: "reCAPTCHA-Token fehlt." });
 
     // === reCAPTCHA VERIFY ===
-    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    const secret = functions.config().recaptcha.secret;
 
     const verifyRes = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
