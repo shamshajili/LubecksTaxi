@@ -14,18 +14,18 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 const app = express();
-const fetch = require("node-fetch");
 
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://lubecks-taxi-dybx.vercel.app"
+  "https://lubecks-taxi-dybx.vercel.app",
+  "https://lubecks-taxi-dybx-git-main-shams-hajilis-projects.vercel.app"
 ];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
+  if (origin && (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app"))) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 app.use(express.json());
 
 // ===== BAD WORD LIST =====
