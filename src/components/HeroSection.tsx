@@ -27,18 +27,13 @@ const HeroSection: React.FC = () => {
             </button>
 
             <a
-              href="https://wa.me/+49 15213491000"
+              href="https://wa.me/+49 15563293339"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-yellow-400 text-yellow-400 px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-black transition w-full xs:w-auto shadow-md"
             >
-              +49 15213491000
+              +49 15563293339
             </a>
-          </div>
-
-          <div className="mt-8 text-gray-400 text-base sm:text-lg">
-            ⭐⭐⭐⭐⭐ <br />
-            Mehr als 5 Mio. zufriedene Kunden
           </div>
         </div>
 
