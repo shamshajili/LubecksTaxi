@@ -10,11 +10,7 @@ import car1 from "../assets/images/cars3.jpeg";
 import car2 from "../assets/images/cars4.jpeg";
 import car3 from "../assets/images/cars1.jpeg";
 
-const cars = [
-  { src: car1, label: "Business Class Limousine" },
-  { src: car2, label: "Komfortabler Van für Gruppen" },
-  { src: car3, label: "Moderne Elektrofahrzeuge" },
-];
+const cars = [car1, car2, car3];
 
 export default function CarCarousel() {
   return (
@@ -52,8 +48,7 @@ export default function CarCarousel() {
                                 bg-black overflow-hidden rounded-3xl">
 
                   <img
-                    src={car.src}
-                    alt={car.label}
+                    src={car}
                     className="w-full h-full object-cover object-center"
                   />
 
@@ -68,7 +63,6 @@ export default function CarCarousel() {
                         Lübecks Taxi
                       </p>
                       <h3 className="mt-1 text-lg md:text-2xl font-semibold text-white">
-                        {car.label}
                       </h3>
                     </div>
 
@@ -95,7 +89,7 @@ export default function CarCarousel() {
                 className="w-20 h-14 rounded-xl overflow-hidden border border-neutral-700 bg-neutral-900"
               >
                 <img
-                  src={car.src}
+                  src={car}
                   alt=""
                   className="w-full h-full object-cover opacity-80 hover:opacity-100 transition"
                 />
