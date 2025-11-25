@@ -188,7 +188,8 @@ ${form.notes || "-"}
 
           <img
             src={car1}
-            className="relative rounded-3xl shadow-2xl object-cover w-full h-[260px] sm:h-[340px] md:h-[420px]"
+            className="relative rounded-3xl shadow-2xl object-cover w-full 
+                       h-[350px] sm:h-[480px] md:h-[620px]"
           />
           <div className="absolute bottom-3 left-3 bg-black/60 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm border border-white/10">
             24/7 Flughafentransfer · Stadtfahrten · Business Service
@@ -281,7 +282,13 @@ ${form.notes || "-"}
               name="date"
               value={form.date}
               onChange={handleChange}
-              className="p-3 rounded-lg text-black w-full text-sm bg-white border border-gray-300"
+              className="
+                 p-3 rounded-lg text-black w-full text-sm 
+                 bg-white border border-gray-300 
+                 appearance-none
+                 focus:outline-none focus:ring-2 focus:ring-yellow-400
+              "
+              aria-label="Datum auswählen"
             />
 
             <input
@@ -289,9 +296,14 @@ ${form.notes || "-"}
               name="time"
               value={form.time}
               onChange={handleChange}
-              className="p-3 rounded-lg text-black w-full text-sm bg-white border border-gray-300"
+              className="
+                 p-3 rounded-lg text-black w-full text-sm 
+                 bg-white border border-gray-300 
+                 appearance-none
+                 focus:outline-none focus:ring-2 focus:ring-yellow-400
+              "
+              aria-label="Uhrzeit auswählen"
             />
-
             <div>
               <input
                 type="number"
