@@ -167,7 +167,7 @@ const Navbar: React.FC = () => {
 
         {/* CONTACT BOX */}
         <div className="mt-12 px-8">
-          <div className="bg-yellow-100 p-5 rounded-2xl shadow-md border border-yellow-400/60">
+          <div className="bg-white p-5 rounded-2xl shadow-md border border-yellow-400/60">
             <div className="flex flex-col gap-3 text-slate-900">
 
               <a
@@ -177,7 +177,7 @@ const Navbar: React.FC = () => {
                 <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.1.83.32 1.64.65 2.41a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                +49 155-6329-3339
+                +49 15563293339
               </a>
 
               <a

@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
                 href="tel:+4915213491000"
                 className="hover:text-yellow-500 underline-offset-4 hover:underline transition"
               >
-                <span className="font-semibold">+49 155-6329-3339</span>
+                <span className="font-semibold">+49 15563293339</span>
               </a>
             </li>
           </ul>

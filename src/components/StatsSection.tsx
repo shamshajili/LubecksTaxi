@@ -31,7 +31,6 @@ const StatsSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* ✅ BU WRAPPER ÇOX VACİBDİR: CARD + POPUPS hamısı bunun içindədir */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -73,7 +72,6 @@ const StatsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* ✅ POPUPS — MÜTLƏQ bu relative wrapper-in içində olmalıdır */}
 
           <InfoPopup
             open={openStatsPopup === "buchen"}
@@ -103,7 +101,6 @@ const StatsSection: React.FC = () => {
               Unser Team ist rund um die Uhr erreichbar – Bestellungen jederzeit möglich.
             </p>
           </InfoPopup>
-
           <InfoPopup
             open={openStatsPopup === "payment"}
             onClose={() => setOpenStatsPopup(null)}
@@ -129,6 +126,12 @@ const StatsSection: React.FC = () => {
                 className="w-12"
                 alt="Mastercard"
               />
+              <div className="flex items-center gap-1">
+      <div className="flex items-center justify-center ">
+        <CreditCard className="w-10 h-10 text-orange-600" />
+      </div>
+      <span className="text-xs font-semibold text-gray-800">EC-Karte</span>
+    </div>
             </div>
           </InfoPopup>
         </motion.div>

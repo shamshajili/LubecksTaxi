@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
               rel="noopener noreferrer"
               className="border border-yellow-400 text-yellow-400 px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-black transition w-full xs:w-auto shadow-md"
             >
-              +49 155-6329-3339
+              +49 15563293339
             </a>
           </div>
 
