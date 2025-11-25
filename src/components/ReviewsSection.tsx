@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
@@ -34,7 +29,7 @@ const ReviewsSection: React.FC = () => {
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  // 🔹 Firestore-dan real-time oxuma (yalnız read clientdən)
+  // 🔹 Firestore real-time listener
   useEffect(() => {
     const q = query(
       collection(db, "reviews"),
@@ -67,55 +62,64 @@ const ReviewsSection: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
+  // 🔹 Calculate average rating
   const avgRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError(null);
-  setSuccess(null);
-  setSubmitting(true); 
+  // 🔥 Auto-switch between LOCAL and PRODUCTION API
+  const API_URL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5001/lubecks-taxi/us-central1/api/review"
+      : "https://api-rwljeucb4a-uc.a.run.app/review";
 
-  if (!executeRecaptcha) {
-    setError("reCAPTCHA hazır deyil.");
-    return;
-  }
+      console.log("API_URL →", API_URL);
 
-  // **Token al**
-  const token = await executeRecaptcha("submit_review");
 
-  try {
-    const res = await fetch("https://api-rwljeucb4a-uc.a.run.app/review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name.trim(),
-        email: email.trim(),
-        rating,
-        comment: comment.trim(),
-        token,
-      }),
-    });
+  // 🔥 Submit Review
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+    setSubmitting(true);
 
-    setSuccess("Vielen Dank für Ihr Feedback!");
-    setName("");
-    setEmail("");
-    setRating(0);
-    setComment("");
+    if (!executeRecaptcha) {
+      setError("reCAPTCHA hazır deyil.");
+      return;
+    }
 
-  } catch (error: any) {
-    setError(error.message || "Bir xəta baş verdi.");
-  }finally {
-    setSubmitting(false);
-  }
-};
+    const token = await executeRecaptcha("submit_review");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          rating,
+          comment: comment.trim(),
+          token,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      setSuccess("Vielen Dank für Ihr Feedback!");
+      setName("");
+      setEmail("");
+      setRating(0);
+      setComment("");
+
+    } catch (error: any) {
+      setError(error.message || "Bir xəta baş verdi.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const renderStars = (value: number) => (
     <div className="flex items-center gap-0.5">
@@ -138,7 +142,8 @@ const handleSubmit = async (e: React.FormEvent) => {
       id="bewertungen"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid lg:grid-cols-2 gap-12 lg:gap-16">
-        {/* LEFT: Summary + List */}
+
+        {/* LEFT SIDE: Reviews List */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -153,7 +158,6 @@ const handleSubmit = async (e: React.FormEvent) => {
             gern auch Ihre eigene Erfahrung.
           </p>
 
-          {/* Average rating box */}
           <div className="inline-flex items-center gap-4 rounded-2xl border border-neutral-700 bg-neutral-900/80 px-5 py-4 mb-8">
             <div>
               <p className="text-3xl font-extrabold text-yellow-400">
@@ -172,7 +176,6 @@ const handleSubmit = async (e: React.FormEvent) => {
             </div>
           </div>
 
-          {/* Review list */}
           <div className="space-y-4 max-h-[360px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-neutral-900/40">
             {reviews.map((review) => (
               <div
@@ -203,7 +206,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
         </motion.div>
 
-        {/* RIGHT: Form */}
+        {/* RIGHT SIDE: Review Form */}
         <motion.div
           initial="hidden"
           whileInView="visible"

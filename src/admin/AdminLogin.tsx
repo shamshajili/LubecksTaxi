@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_BASE } from "../config";
 
 export default function AdminLogin({ onLogin }: { onLogin: (t: string) => void }) {
   const [email, setEmail] = useState("admin@taxi.com");
@@ -12,7 +13,7 @@ export default function AdminLogin({ onLogin }: { onLogin: (t: string) => void }
     setError(null);
 
     try {
-      const res = await fetch("https://api-rwljeucb4a-uc.a.run.app/admin/login", {
+      const res = await fetch(`${API_BASE}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -23,6 +24,7 @@ export default function AdminLogin({ onLogin }: { onLogin: (t: string) => void }
 
       localStorage.setItem("admin_token", data.token);
       onLogin(data.token);
+
     } catch (err: any) {
       setError(err.message);
     } finally {

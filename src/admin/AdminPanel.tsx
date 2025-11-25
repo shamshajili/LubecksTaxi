@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE } from "../config";
 
 function getToken() {
   return localStorage.getItem("admin_token") || "";
@@ -11,7 +12,6 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
   const [banEmail, setBanEmail] = useState("");
   const [banIp, setBanIp] = useState("");
 
-  // NEW: banned users state
   const [banned, setBanned] = useState<any[]>([]);
 
   const token = getToken();
@@ -20,7 +20,7 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
   // LOAD REVIEWS
   // ==========================
   useEffect(() => {
-    fetch("https://api-rwljeucb4a-uc.a.run.app/admin/reviews", {
+    fetch(`${API_BASE}/admin/reviews`, {
       headers: { "x-admin-token": token },
     })
       .then((res) => res.json())
@@ -30,27 +30,31 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
       });
   }, [token]);
 
+  // ==========================
   // LOAD BANNED USERS
-    const loadBanned = async () => {
-      try {
-        const res = await fetch("https://api-rwljeucb4a-uc.a.run.app/admin/banned", {
-          headers: { "x-admin-token": token }
-        });
-    
-        const data = await res.json();
-        setBanned(data);
-      } catch (error) {
-        console.log("Error loading banned users", error);
-      }
-    };
+  // ==========================
+  const loadBanned = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/admin/banned`, {
+        headers: { "x-admin-token": token },
+      });
+
+      const data = await res.json();
+      setBanned(data);
+    } catch (error) {
+      console.log("Error loading banned users", error);
+    }
+  };
 
   useEffect(() => {
     loadBanned();
   }, []);
 
+  // ==========================
   // DELETE REVIEW
+  // ==========================
   const deleteReview = async (id: string) => {
-    await fetch(`https://api-rwljeucb4a-uc.a.run.app/admin/review/${id}`, {
+    await fetch(`${API_BASE}/admin/review/${id}`, {
       method: "DELETE",
       headers: { "x-admin-token": token },
     });
@@ -58,9 +62,11 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
     setReviews((prev) => prev.filter((r) => r.id !== id));
   };
 
+  // ==========================
   // BAN USER
+  // ==========================
   const banUser = async () => {
-    await fetch("https://api-rwljeucb4a-uc.a.run.app/admin/ban", {
+    await fetch(`${API_BASE}/admin/ban`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,12 +82,14 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
     setBanEmail("");
     setBanIp("");
 
-    loadBanned(); // refresh banned list
+    loadBanned();
   };
 
+  // ==========================
   // UNBAN USER
+  // ==========================
   const unban = async (id: string) => {
-    await fetch(`https://api-rwljeucb4a-uc.a.run.app/admin/unban/${id}`, {
+    await fetch(`${API_BASE}/admin/unban/${id}`, {
       method: "DELETE",
       headers: { "x-admin-token": token },
     });
@@ -133,7 +141,9 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
       <div className="mb-6">
         <h2 className="font-semibold mb-3">Gesperrte Benutzer</h2>
 
-        {banned.length === 0 && <p className="text-gray-400">Keine gesperrten Benutzer.</p>}
+        {banned.length === 0 && (
+          <p className="text-gray-400">Keine gesperrten Benutzer.</p>
+        )}
 
         {banned.map((b) => (
           <div
@@ -141,8 +151,12 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
             className="bg-neutral-900 border border-neutral-700 rounded-xl p-4 flex justify-between items-center mb-2"
           >
             <div>
-              <p><b>Email:</b> {b.email || "-"}</p>
-              <p><b>IP:</b> {b.ip || "-"}</p>
+              <p>
+                <b>Email:</b> {b.email || "-"}
+              </p>
+              <p>
+                <b>IP:</b> {b.ip || "-"}
+              </p>
             </div>
             <button
               onClick={() => unban(b.id)}
@@ -164,7 +178,9 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
             <div className="flex items-center justify-between">
               <p className="font-semibold">
                 {r.name}{" "}
-                <span className="text-xs text-gray-400">({r.email || "—"})</span>
+                <span className="text-xs text-gray-400">
+                  ({r.email || "—"})
+                </span>
               </p>
               <button
                 onClick={() => deleteReview(r.id)}
@@ -175,7 +191,9 @@ export default function AdminPanel({ onLogout }: { onLogout: () => void }) {
             </div>
             <p className="text-sm mt-1">⭐ {r.rating}</p>
             <p className="text-sm text-gray-200 mt-2">{r.comment}</p>
-            {r.ip && <p className="text-xs text-gray-500 mt-2">IP: {r.ip}</p>}
+            {r.ip && (
+              <p className="text-xs text-gray-500 mt-2">IP: {r.ip}</p>
+            )}
           </div>
         ))}
       </div>

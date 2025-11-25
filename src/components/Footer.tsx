@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
                 href="tel:+4915213491000"
                 className="hover:text-yellow-500 underline-offset-4 hover:underline transition"
               >
-                <span className="font-semibold">+49015563293339</span>
+                <span className="font-semibold">+49 15563293339</span>
               </a>
             </li>
           </ul>
@@ -118,9 +118,12 @@ const Footer: React.FC = () => {
             Rechtliches
           </h3>
           <ul className="space-y-2 text-white text-base">
-            <li className="hover:text-yellow-500 cursor-pointer transition">
-              <span className="font-semibold">Impressum</span>
-            </li>
+            <Link
+                to="/impressum"
+                className="hover:text-yellow-500 transition font-semibold"
+              >
+                Impressum
+              </Link>
           </ul>
         </div>
       </div>

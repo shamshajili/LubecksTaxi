@@ -5,7 +5,10 @@ import AdminPanel from "./AdminPanel";
 export default function AdminPage() {
   const [token, setToken] = useState(localStorage.getItem("admin_token"));
 
-  const handleLogin = (t: string) => setToken(t);
+  const handleLogin = (t: string) => {
+    localStorage.setItem("admin_token", t);
+    setToken(t);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("admin_token");

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import car1 from "../assets/images/cars1.jpeg";
+
 
 const SERVICE_ID = "service_hrv7nxp";
 const TEMPLATE_ID = "template_knnfbg8";
@@ -185,10 +187,9 @@ ${form.notes || "-"}
           <div className="absolute -inset-3 rounded-3xl bg-yellow-400/30 blur-xl opacity-60"></div>
 
           <img
-            src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80"
+            src={car1}
             className="relative rounded-3xl shadow-2xl object-cover w-full h-[260px] sm:h-[340px] md:h-[420px]"
           />
-
           <div className="absolute bottom-3 left-3 bg-black/60 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm border border-white/10">
             24/7 Flughafentransfer · Stadtfahrten · Business Service
           </div>

@@ -10,8 +10,9 @@ import FloatingContacts from "./components/FloatingContacts";
 import BookingSection from "./components/BookingSection";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import ReviewsSection from "./components/ReviewsSection";
+// import ReviewsSection from "./components/ReviewsSection";
 import AdminPage from "./admin/AdminPage";
+import CarCarousel from "./components/CarCarousel";
 
 // Pages
 import Personenfahrten from "./pages/Personenfahrten";
@@ -19,6 +20,7 @@ import Kurierfahrten from "./pages/Kurierfahrten";
 import Flughafenfahrten from "./pages/Flughafenfahrten";
 import Krankenfahrten from "./pages/Krankenfahrten";
 import Kinderfahrten from "./pages/Kinderfahrten";
+import Impressum from "./pages/Impressum";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -47,7 +49,8 @@ const HomePage: React.FC = () => {
       <StatsSection />
       <ServicesSection />
       <TaxiFlowSection />
-      <ReviewsSection />
+      {/* <ReviewsSection /> */}
+      <CarCarousel />
       <BookingSection />
     </>
   );
@@ -115,6 +118,15 @@ const App: React.FC = () => {
           element={
             <Layout>
               <Kinderfahrten />
+            </Layout>
+          }
+        />
+        {/* IMPRESSUM */}
+        <Route
+          path="/impressum"
+          element={
+            <Layout>
+              <Impressum />
             </Layout>
           }
         />
