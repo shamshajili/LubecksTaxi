@@ -90,9 +90,6 @@ const Impressum: React.FC = () => {
         {/* Car carousel section */}
         <section className="space-y-6">
           <div className="flex items-center justify-between gap-4 mb-2">
-            <h2 className="text-xl md:text-2xl font-semibold text-white">
-              Unsere Fahrzeuge
-            </h2>
             <p className="hidden md:block text-xs tracking-[0.25em] uppercase text-yellow-400">
               Lübecks Taxi
             </p>
