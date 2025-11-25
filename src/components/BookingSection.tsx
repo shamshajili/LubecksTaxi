@@ -78,6 +78,22 @@ const BookingSection: React.FC = () => {
     return () => intervalId && clearInterval(intervalId);
   }, []);
 
+    useEffect(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+
+    const hh = String(today.getHours()).padStart(2, "0");
+    const min = String(today.getMinutes()).padStart(2, "0");
+
+    setForm((prev) => ({
+      ...prev,
+      date: `${yyyy}-${mm}-${dd}`,
+      time: `${hh}:${min}`,
+    }));
+  }, []);
+
   /* HANDLE CHANGE */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -276,33 +292,21 @@ ${form.notes || "-"}
 
           {/* DATE + TIME + PERSONS */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-
             <input
               type="date"
               name="date"
               value={form.date}
+              min={form.date}
               onChange={handleChange}
-              className="
-                 p-3 rounded-lg text-black w-full text-sm 
-                 bg-white border border-gray-300 
-                 appearance-none
-                 focus:outline-none focus:ring-2 focus:ring-yellow-400
-              "
-              aria-label="Datum auswählen"
+              className="p-3 rounded-lg text-black w-full text-sm bg-white border border-gray-300 appearance-none"
             />
-
             <input
               type="time"
               name="time"
               value={form.time}
+              min={form.time}
               onChange={handleChange}
-              className="
-                 p-3 rounded-lg text-black w-full text-sm 
-                 bg-white border border-gray-300 
-                 appearance-none
-                 focus:outline-none focus:ring-2 focus:ring-yellow-400
-              "
-              aria-label="Uhrzeit auswählen"
+              className="p-3 rounded-lg text-black w-full text-sm bg-white border border-gray-300 appearance-none"
             />
             <div>
               <input
