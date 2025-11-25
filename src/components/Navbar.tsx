@@ -171,13 +171,13 @@ const Navbar: React.FC = () => {
             <div className="flex flex-col gap-3 text-slate-900">
 
               <a
-                href="tel:+49015563293339"
+                href="tel:++49 15213491000"
                 className="flex items-center gap-3 hover:text-yellow-600"
               >
                 <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.1.83.32 1.64.65 2.41a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                +49 15563293339
+                +49 15213491000
               </a>
 
               <a
