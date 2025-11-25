@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
 
+    
+
     <!-- Primary SEO Meta Tags -->
     <title>Lübecks Taxi – Zuverlässige Personen- & Krankenfahrten in Lübeck</title>
     <meta
@@ -39,8 +41,30 @@
 
     <!-- Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  </head>
 
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TaxiService",
+        "name": "Lübecks Taxi",
+        "url": "https://luebecks-taxi.de/",
+        "telephone": "+49 1521 3491000",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Brahmsstraße 20j",
+          "postalCode": "23556",
+          "addressLocality": "Lübeck",
+          "addressCountry": "DE"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Lübeck"
+        },
+        "priceRange": "€€",
+        "sameAs": []
+      }
+      </script>
+  </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
