@@ -93,10 +93,10 @@ const Footer: React.FC = () => {
             <li className="flex justify-center md:justify-start items-center gap-3">
               <EnvelopeIcon className="h-6 w-6 text-yellow-500" />
               <a
-                href="mailto:azerhacili@yahoo.com"
+                href="mailto:azerhacili@luebecks-taxi.de"
                 className="hover:text-yellow-500 underline-offset-4 hover:underline transition"
               >
-                <span className="font-semibold">azerhacili@yahoo.com</span>
+                <span className="font-semibold">azerhacili@luebecks-taxi.de</span>
               </a>
             </li>
 

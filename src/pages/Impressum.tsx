@@ -63,10 +63,10 @@ const Impressum: React.FC = () => {
                 <p>
                   <span className="font-medium text-white">E-Mail:</span>{" "}
                   <a
-                    href="mailto:azerhacili@yahoo.com"
+                    href="mailto:azerhacili@luebecks-taxi.de"
                     className="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline"
                   >
-                    azerhacili@yahoo.com
+                    azerhacili@luebecks-taxi.de
                   </a>
                 </p>
               </div>

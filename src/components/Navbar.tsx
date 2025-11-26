@@ -181,14 +181,14 @@ const Navbar: React.FC = () => {
               </a>
 
               <a
-                href="mailto:azerhacili@yahoo.com"
+                href="mailto:azerhacili@luebecks-taxi.de"
                 className="flex items-center gap-3 hover:text-yellow-600"
               >
                 <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <rect x="3" y="5" width="18" height="14" rx="2" ry="2" />
                   <polyline points="3 7 12 13 21 7" />
                 </svg>
-                azerhacili@yahoo.com
+                azerhacili@luebecks-taxi.de
               </a>
 
             </div>
