@@ -27,12 +27,12 @@ const HeroSection: React.FC = () => {
             </button>
 
             <a
-              href="https://wa.me/+49 15563293339"
+              href="https://wa.me/+4915563293339"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-yellow-400 text-yellow-400 px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-black transition w-full xs:w-auto shadow-md"
             >
-              +49 15563293339
+              +4915563293339
             </a>
           </div>
         </div>

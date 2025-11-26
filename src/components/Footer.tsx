@@ -103,10 +103,10 @@ const Footer: React.FC = () => {
             <li className="flex justify-center md:justify-start items-center gap-3">
               <DevicePhoneMobileIcon className="h-6 w-6 text-yellow-500" />
               <a
-                href="tel:+49 15563293339"
+                href="tel:+4915563293339"
                 className="hover:text-yellow-500 underline-offset-4 hover:underline transition"
               >
-                <span className="font-semibold">+49 15563293339</span>
+                <span className="font-semibold">+4915563293339</span>
               </a>
             </li>
           </ul>

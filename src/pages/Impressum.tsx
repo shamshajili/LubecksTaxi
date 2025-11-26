@@ -57,7 +57,7 @@ const Impressum: React.FC = () => {
                     href="tel:+4915563293339"
                     className="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline"
                   >
-                    +49 15563293339 
+                    +4915563293339 
                   </a>
                 </p>
                 <p>
