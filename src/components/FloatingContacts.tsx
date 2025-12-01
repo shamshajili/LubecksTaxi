@@ -67,14 +67,14 @@ export default function FloatingContacts() {
     <div className="fixed right-4 bottom-6 z-50 flex flex-col gap-3">
 
       <a
-        href="tel:+4912345678"
+        href="tel:+4915563293339"
         className="w-10 h-10 bg-orange-500 text-white rounded-lg flex items-center justify-center shadow-lg hover:bg-orange-600 transition"
       >
         <PhoneIcon />
       </a>
 
       <a
-        href="https://wa.me/4915213491000"
+        href="https://wa.me/4915563293339"
         target="_blank"
         rel="noreferrer"
         className="w-10 h-10 bg-green-500 text-white rounded-lg flex items-center justify-center shadow-lg hover:bg-green-600 transition"
@@ -83,7 +83,7 @@ export default function FloatingContacts() {
       </a>
 
       <a
-        href="mailto:azerhacili@yahoo.com"
+        href="mailto:azerhacili@luebecks-taxi.de"
         className="w-10 h-10 bg-blue-500 text-white rounded-lg flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
       >
         <MailIcon />
