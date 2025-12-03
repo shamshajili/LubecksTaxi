@@ -136,7 +136,7 @@ const BookingSection: React.FC = () => {
 ${form.notes || "-"}
 `;
     window.open(
-      `https://wa.me/5915563293339?text=${encodeURIComponent(msg)}`,
+      `https://wa.me/4915563293339?text=${encodeURIComponent(msg)}`,
       "_blank"
     );
   };
