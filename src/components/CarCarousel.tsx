@@ -9,14 +9,8 @@ import "swiper/css/effect-fade";
 import car1 from "../assets/images/cars3.jpeg";
 import car2 from "../assets/images/cars4.jpeg";
 import car3 from "../assets/images/cars1.jpeg";
-<<<<<<< HEAD
 
 const cars = [car1, car2,car3];
-=======
-import car4 from "../assets/images/cars5.jpeg"
-
-const cars = [car1, car2,car4,car3];
->>>>>>> f6dc82f136a03e8b1e8ed6d10956f03da834ddc1
 
 export default function CarCarousel() {
   return (
