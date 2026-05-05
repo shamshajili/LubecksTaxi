@@ -12,7 +12,6 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 // import ReviewsSection from "./components/ReviewsSection";
 import AdminPage from "./admin/AdminPage";
-import CarCarousel from "./components/CarCarousel";
 
 // Pages
 import Personenfahrten from "./pages/Personenfahrten";
@@ -50,7 +49,6 @@ const HomePage: React.FC = () => {
       <ServicesSection />
       <TaxiFlowSection />
       {/* <ReviewsSection /> */}
-      <CarCarousel />
       <BookingSection />
     </>
   );
