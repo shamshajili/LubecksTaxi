@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import car1 from "../assets/images/cars1.jpeg";
+import car1 from "../assets/images/taxi.jpeg";
 
 
 const SERVICE_ID = "service_hrv7nxp";
