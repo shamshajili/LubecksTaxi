@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import car1 from "../assets/images/taxi.jpeg";
 import car2 from "../assets/images/taxi2.jpeg";
+import car3 from "../assets/images/taxi3.jpeg";
 
 
 const SERVICE_ID = "service_hrv7nxp";
@@ -193,29 +194,54 @@ ${form.notes || "-"}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 sm:px-6">
         
         {/* IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative"
-        >
-          <div className="absolute -inset-3 rounded-3xl bg-yellow-400/30 blur-xl opacity-60"></div>
+{/* IMAGE */}
+<motion.div
+  initial={{ opacity: 0, x: -40 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.7 }}
+  className="relative w-full max-w-[540px] mx-auto"
+>
+  {/* Yumşaq sarı fon effekti */}
+  <div className="absolute -inset-2 rounded-2xl bg-yellow-400/10 blur-xl" />
 
-          <img
-            src={car1}
-            className="relative rounded-3xl shadow-2xl object-cover w-full 
-                       h-[350px] sm:h-[480px] md:h-[620px]"
-          />
-          <img
-            src={car2}
-            className="relative rounded-3xl shadow-2xl object-cover w-full 
-                       h-[350px] sm:h-[480px] md:h-[620px]"
-          />
-          <div className="absolute bottom-3 left-3 bg-black/60 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm border border-white/10">
-            24/7 Flughafentransfer · Stadtfahrten · Business Service
-          </div>
-        </motion.div>
+  {/* Şəkillər */}
+  <div className="relative flex flex-col gap-4">
+
+    {/* CAR 1 */}
+    <div className="w-full h-[190px] sm:h-[230px] md:h-[220px] lg:h-[240px] overflow-hidden rounded-2xl">
+      <img
+        src={car1}
+        alt="Lübecks Taxi Fahrzeug"
+        className="w-full h-full object-cover object-center"
+      />
+    </div>
+
+    {/* CAR 2 */}
+    <div className="w-full h-[190px] sm:h-[230px] md:h-[220px] lg:h-[240px] overflow-hidden rounded-2xl">
+      <img
+        src={car2}
+        alt="Lübecks Taxi Fahrer"
+        className="w-full h-full object-cover object-center"
+      />
+    </div>
+
+    {/* CAR 3 */}
+    <div className="w-full h-auto overflow-hidden rounded-2xl">
+      <img
+        src={car3}
+        alt="Lübecks Taxi Fahrzeug"
+        className="block w-full h-auto object-contain rounded-2xl"
+      />
+    </div>
+
+  </div>
+
+  {/* Aşağıda məlumat etiketi */}
+  <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-black/75 backdrop-blur-sm text-white px-3 py-2 rounded-xl text-xs sm:text-sm border border-white/10">
+    24/7 Flughafentransfer · Stadtfahrten · Business Service
+  </div>
+</motion.div>
 
         {/* FORM */}
         <motion.form
