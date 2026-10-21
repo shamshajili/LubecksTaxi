@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import car1 from "../assets/images/taxi.jpeg";
+import car2 from "../assets/images/taxi2.jpeg";
 
 
 const SERVICE_ID = "service_hrv7nxp";
@@ -203,6 +204,11 @@ ${form.notes || "-"}
 
           <img
             src={car1}
+            className="relative rounded-3xl shadow-2xl object-cover w-full 
+                       h-[350px] sm:h-[480px] md:h-[620px]"
+          />
+          <img
+            src={car2}
             className="relative rounded-3xl shadow-2xl object-cover w-full 
                        h-[350px] sm:h-[480px] md:h-[620px]"
           />
