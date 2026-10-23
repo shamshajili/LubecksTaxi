@@ -32,6 +32,16 @@ const BookingSection: React.FC = () => {
   const [status, setStatus] = useState<null | "success" | "error">(null);
   const [showModal, setShowModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [activeCar, setActiveCar] = useState(0);
+
+  // Automatically switch the carousel image every 3 seconds.
+  useEffect(() => {
+    const carouselTimer = window.setInterval(() => {
+      setActiveCar((current) => (current + 1) % 3);
+    }, 3000);
+
+    return () => window.clearInterval(carouselTimer);
+  }, []);
   const [errors, setErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
 
   const fromRef = useRef<HTMLInputElement | null>(null);
@@ -193,55 +203,100 @@ ${form.notes || "-"}
       {/* GRID */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4 sm:px-6">
         
-        {/* IMAGE */}
-{/* IMAGE */}
-<motion.div
-  initial={{ opacity: 0, x: -40 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.7 }}
-  className="relative w-full max-w-[540px] mx-auto"
->
-  {/* Yumşaq sarı fon effekti */}
-  <div className="absolute -inset-2 rounded-2xl bg-yellow-400/10 blur-xl" />
+        {/* MODERN AUTO CAROUSEL */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative mx-auto w-full max-w-[540px]"
+        >
+          <div className="absolute -inset-3 rounded-[2rem] bg-yellow-400/10 blur-2xl" />
 
-  {/* Şəkillər */}
-  <div className="relative flex flex-col gap-4">
+          <div className="relative isolate overflow-hidden rounded-[1.75rem] border border-white/10 bg-neutral-900 shadow-2xl">
+            <div className="relative h-[300px] overflow-hidden sm:h-[390px] md:h-[440px] lg:h-[500px]">
+              {[
+                { src: car1, alt: "Lübecks Taxi Fahrzeug" },
+                { src: car2, alt: "Lübecks Taxi Fahrer" },
+                { src: car3, alt: "Lübecks Taxi Fahrzeug" },
+              ].map((car, index) => (
+                <img
+                  key={car.src}
+                  src={car.src}
+                  alt={car.alt}
+                  aria-hidden={activeCar !== index}
+                  className={`absolute inset-0 h-full w-full object-cover object-center transition-[opacity,transform] duration-1000 ease-in-out ${
+                    activeCar === index
+                      ? "scale-100 opacity-100"
+                      : "scale-105 opacity-0"
+                  }`}
+                />
+              ))}
 
-    {/* CAR 1 */}
-    <div className="w-full h-[190px] sm:h-[230px] md:h-[220px] lg:h-[240px] overflow-hidden rounded-2xl">
-      <img
-        src={car1}
-        alt="Lübecks Taxi Fahrzeug"
-        className="w-full h-full object-cover object-center"
-      />
-    </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/5" />
 
-    {/* CAR 2 */}
-    <div className="w-full h-[190px] sm:h-[230px] md:h-[220px] lg:h-[240px] overflow-hidden rounded-2xl">
-      <img
-        src={car2}
-        alt="Lübecks Taxi Fahrer"
-        className="w-full h-full object-cover object-center"
-      />
-    </div>
+              <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur-md sm:left-5 sm:top-5">
+                <span className="h-2 w-2 rounded-full bg-yellow-400 shadow-[0_0_12px_rgba(250,204,21,0.8)]" />
+                LÜBECKS TAXI
+              </div>
 
-    {/* CAR 3 */}
-    <div className="w-full h-auto overflow-hidden rounded-2xl">
-      <img
-        src={car3}
-        alt="Lübecks Taxi Fahrzeug"
-        className="block w-full h-auto object-contain rounded-2xl"
-      />
-    </div>
+              <div className="absolute bottom-14 left-4 right-4 text-white sm:bottom-16 sm:left-6 sm:right-6">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-yellow-300 sm:text-sm">
+                  Immer für Sie unterwegs
+                </p>
+                <p className="max-w-sm text-xl font-bold leading-tight sm:text-2xl">
+                  Komfortabel ans Ziel. Zuverlässig unterwegs.
+                </p>
+              </div>
 
-  </div>
+              <button
+                type="button"
+                aria-label="Vorheriges Bild"
+                onClick={() => setActiveCar((current) => (current - 1 + 3) % 3)}
+                className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-xl text-white backdrop-blur-md transition hover:border-yellow-300/70 hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-yellow-400 sm:left-4"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                aria-label="Nächstes Bild"
+                onClick={() => setActiveCar((current) => (current + 1) % 3)}
+                className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-xl text-white backdrop-blur-md transition hover:border-yellow-300/70 hover:bg-black/60 focus:outline-none focus:ring-2 focus:ring-yellow-400 sm:right-4"
+              >
+                ›
+              </button>
 
-  {/* Aşağıda məlumat etiketi */}
-  <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-black/75 backdrop-blur-sm text-white px-3 py-2 rounded-xl text-xs sm:text-sm border border-white/10">
-    24/7 Flughafentransfer · Stadtfahrten · Business Service
-  </div>
-</motion.div>
+              <div className="absolute bottom-5 left-4 flex items-center gap-2 sm:left-6">
+                {[0, 1, 2].map((index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    aria-label={`Bild ${index + 1} anzeigen`}
+                    aria-pressed={activeCar === index}
+                    onClick={() => setActiveCar(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                      activeCar === index
+                        ? "w-8 bg-yellow-400"
+                        : "w-3 bg-white/60 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <span className="absolute bottom-4 right-4 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-md sm:right-6">
+                0{activeCar + 1} <span className="text-white/50">/ 03</span>
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 border-t border-white/10 bg-neutral-950/95 px-3 py-4 text-center text-[11px] font-medium tracking-wide text-neutral-300 sm:gap-x-4 sm:text-xs">
+              <span>24/7 Flughafentransfer</span>
+              <span className="hidden text-yellow-400 sm:inline">•</span>
+              <span>Stadtfahrten</span>
+              <span className="hidden text-yellow-400 sm:inline">•</span>
+              <span>Business Service</span>
+            </div>
+          </div>
+        </motion.div>
 
         {/* FORM */}
         <motion.form
